@@ -4,7 +4,7 @@ TERMUX_PKG_LICENSE="PythonPL"
 TERMUX_PKG_MAINTAINER="@termux"
 _MAJOR_VERSION=3.9
 TERMUX_PKG_VERSION=${_MAJOR_VERSION}.6
-TERMUX_PKG_REVISION=4
+TERMUX_PKG_REVISION=5
 TERMUX_PKG_SRCURL=https://www.python.org/ftp/python/${TERMUX_PKG_VERSION}/Python-${TERMUX_PKG_VERSION}.tar.xz
 TERMUX_PKG_SHA256=397920af33efc5b97f2e0b57e91923512ef89fc5b3c1d21dbfc8c4828ce0108a
 TERMUX_PKG_DEPENDS="gdbm, libandroid-support, libbz2, libcrypt, libffi, liblzma, libsqlite, ncurses, ncurses-ui-libs, openssl, readline, zlib"
@@ -26,17 +26,17 @@ TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" --build=$TERMUX_BUILD_TUPLE --with-system-ffi
 # Hard links does not work on Android 6:
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_func_linkat=no"
 # Posix semaphores are not supported on Android:
-TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_posix_semaphores_enabled=no"
+TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_posix_semaphores_enabled=yes"
 # Do not assume getaddrinfo is buggy when cross compiling:
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_buggy_getaddrinfo=no"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" --enable-loadable-sqlite-extensions"
 # Fix https://github.com/termux/termux-packages/issues/2236:
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_little_endian_double=yes"
 # Force disable semaphores (Android does not support them).
-TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_func_sem_open=no"
+TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_func_sem_open=yes"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_func_sem_timedwait=no"
 TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_func_sem_getvalue=no"
-TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_func_sem_unlink=no"
+TERMUX_PKG_EXTRA_CONFIGURE_ARGS+=" ac_cv_func_sem_unlink=yes"
 
 TERMUX_PKG_RM_AFTER_INSTALL="
 lib/python${_MAJOR_VERSION}/test
