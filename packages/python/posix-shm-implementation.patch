@@ -66,7 +66,7 @@
  #ifdef HAVE_SHM_OPEN
  /*[clinic input]
  _posixshmem.shm_open -> int
-
+ 
 
 --- Python-3.9.6/setup.py	2021-06-28 08:26:18.000000000 +0000
 +++ Python-3.9.6-mod/setup.py	2021-08-12 01:11:17.859969311 +0000
