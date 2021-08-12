@@ -66,3 +66,36 @@
  #ifdef HAVE_SHM_OPEN
  /*[clinic input]
  _posixshmem.shm_open -> int
+
+
+--- Python-3.9.6/setup.py	2021-06-28 08:26:18.000000000 +0000
++++ Python-3.9.6-mod/setup.py	2021-08-12 01:11:17.859969311 +0000
+@@ -1746,17 +1746,17 @@
+             if (sysconfig.get_config_var('HAVE_SEM_OPEN') and not
+                 sysconfig.get_config_var('POSIX_SEMAPHORES_NOT_ENABLED')):
+                 multiprocessing_srcs.append('_multiprocessing/semaphore.c')
+-            if (sysconfig.get_config_var('HAVE_SHM_OPEN') and
+-                sysconfig.get_config_var('HAVE_SHM_UNLINK')):
+-                posixshmem_srcs = ['_multiprocessing/posixshmem.c']
+-                libs = []
+-                if sysconfig.get_config_var('SHM_NEEDS_LIBRT'):
+-                    # need to link with librt to get shm_open()
+-                    libs.append('rt')
+-                self.add(Extension('_posixshmem', posixshmem_srcs,
+-                                   define_macros={},
+-                                   libraries=libs,
+-                                   include_dirs=["Modules/_multiprocessing"]))
++            # if (sysconfig.get_config_var('HAVE_SHM_OPEN') and
++            #     sysconfig.get_config_var('HAVE_SHM_UNLINK')):
++            posixshmem_srcs = ['_multiprocessing/posixshmem.c']
++            libs = []
++            # if sysconfig.get_config_var('SHM_NEEDS_LIBRT'):
++                # need to link with librt to get shm_open()
++                # libs.append('rt')
++            self.add(Extension('_posixshmem', posixshmem_srcs,
++                                define_macros={},
++                                libraries=libs,
++                                include_dirs=["Modules/_multiprocessing"]))
+ 
+         self.add(Extension('_multiprocessing', multiprocessing_srcs,
+                            include_dirs=["Modules/_multiprocessing"]))
